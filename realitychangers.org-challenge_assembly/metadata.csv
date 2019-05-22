@@ -1,0 +1,57 @@
+Declare,metatab-latest
+Title,Challenge Assemby Analysis
+Description,
+Identifier,c4386caf-5b43-4a65-af9c-d6fcadfba5bb
+Name,realitychangers.org-challenge_assembly-1
+Dataset,challenge_assembly
+Origin,realitychangers.org
+Time,
+Space,
+Grain,
+Variant,
+Version,1
+Created,2019-05-06T22:58:57
+Modified,2019-05-07T04:16:19
+Giturl,https://github.com/sandiegodata-projects/realitychangers.org.git
+
+Section,Contacts,Email,Organization,Url
+Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com
+
+Section,Documentation,Title,Description,
+Documentation,file:README.md,README,,
+
+Section,References,Name,Description,
+
+Section,Resources,Name,Description,
+Reference,gs://1rCBl4ay7QFCaqKpEd66_u7TtgB2yN7EFXO40HTkQddM,accepted_students,,
+Reference,gs://16ENWTVx4c_IuQqYDpMVLGIslnSuI9wZF6adK3qO6gHg,all_students,,
+
+Section,Schema,DataType,AltName,Description
+Table,accepted_students,,,
+Table.Column,Year,integer,year,
+Table.Column,School,string,school,
+Table.Column,Name,string,name,
+Table.Column,Comment,string,comment,
+Table,all_students,,,
+Table.Column,cd re,string,cd_re,
+Table.Column,year,integer,,
+Table.Column,Last Name,text,last_name,
+Table.Column,First Name,string,first_name,
+Table.Column,1st Assembly,string,1st_assembly,
+Table.Column,gpa1,string,,
+Table.Column,gpa2,string,,
+Table.Column,sex,string,,
+Table.Column,birth_date,string,,
+Table.Column,address,string,,
+Table.Column,city,string,,
+Table.Column,race_eth,text,,
+Table.Column,birth_city,text,,
+Table.Column,frpl,string,,
+Table.Column,household_size,string,,
+Table.Column,live_with_mom,string,,
+Table.Column,lives_with,string,,
+Table.Column,mother_birth_country,string,,
+Table.Column,mother_ed,string,,
+Table.Column,live_with_father,string,,
+Table.Column,father_birth_country,string,,
+Table.Column,father_education,string,,
