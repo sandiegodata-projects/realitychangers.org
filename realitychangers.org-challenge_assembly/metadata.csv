@@ -1,45 +1,51 @@
-Declare,metatab-latest
-Title,Challenge Assemby Analysis
-Description,
-Identifier,c4386caf-5b43-4a65-af9c-d6fcadfba5bb
-Name,realitychangers.org-challenge_assembly-1
-Dataset,challenge_assembly
-Origin,realitychangers.org
-Time,
-Space,
-Grain,
-Variant,
-Version,1
-Created,2019-05-06T22:58:57
-Modified,2019-05-07T04:16:19
-Giturl,https://github.com/sandiegodata-projects/realitychangers.org.git
-
+Declare,metatab-latest,,,
+Title,Challenge Assemby Analysis,,,
+Description,,,,
+Identifier,c4386caf-5b43-4a65-af9c-d6fcadfba5bb,,,
+Name,realitychangers.org-challenge_assembly-2,,,
+Dataset,challenge_assembly,,,
+Origin,realitychangers.org,,,
+Time,,,,
+Space,,,,
+Grain,,,,
+Variant,,,,
+Version,2,,,
+Created,2019-05-06T22:58:57,,,
+Modified,2019-05-27T03:43:51,,,
+Giturl,https://github.com/sandiegodata-projects/realitychangers.org.git,,,
+,,,,
 Section,Contacts,Email,Organization,Url
 Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com
-
+,,,,
 Section,Documentation,Title,Description,
 Documentation,file:README.md,README,,
-
+,,,,
 Section,References,Name,Description,
-
+Reference,gs://1rCBl4ay7QFCaqKpEd66_u7TtgB2yN7EFXO40HTkQddM,accepted_students_source,,
+Reference,gs://16ENWTVx4c_IuQqYDpMVLGIslnSuI9wZF6adK3qO6gHg,all_students_source,,
+,,,,
 Section,Resources,Name,Description,
-Reference,gs://1rCBl4ay7QFCaqKpEd66_u7TtgB2yN7EFXO40HTkQddM,accepted_students,,
-Reference,gs://16ENWTVx4c_IuQqYDpMVLGIslnSuI9wZF6adK3qO6gHg,all_students,,
-
-Section,Schema,DataType,AltName,Description
+Datafile,python:pylib#accepted_students,accepted_students,,
+Datafile,python:pylib#all_students,all_students,,
+,,,,
+Section,Schema,DataType,transform,
 Table,accepted_students,,,
-Table.Column,Year,integer,year,
-Table.Column,School,string,school,
-Table.Column,Name,string,name,
-Table.Column,Comment,string,comment,
-Table,all_students,,,
-Table.Column,cd re,string,cd_re,
 Table.Column,year,integer,,
-Table.Column,Last Name,text,last_name,
-Table.Column,First Name,string,first_name,
-Table.Column,1st Assembly,string,1st_assembly,
-Table.Column,gpa1,string,,
-Table.Column,gpa2,string,,
+Table.Column,school,string,,
+Table.Column,last_name,string,,
+Table.Column,first_name,string,,
+Table.Column,middle,string,,
+Table.Column,name_key,string,,
+Table,all_students,,,
+Table.Column,school,string,,
+Table.Column,year,integer,,
+Table.Column,last_name,string,,
+Table.Column,first_name,string,,
+Table.Column,middle_name,string,,
+Table.Column,name_key,string,,
+Table.Column,1st_assembly,string,,
+Table.Column,gpa1,float,^robust_float,
+Table.Column,gpa2,float,^robust_float,
 Table.Column,sex,string,,
 Table.Column,birth_date,string,,
 Table.Column,address,string,,

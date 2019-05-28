@@ -32,37 +32,42 @@ def accepted_students(resource, doc, env, *args, **kwargs):
     """
     from nameparser import HumanName
     
+    yield "year school last first middle name_key".split()
+    
     for i, rp in enumerate(doc.reference('accepted_students_source').iterrowproxy()):
-        if i == 0:
-            yield rp.keys()
-            
+
         name = HumanName(rp.Name)
         
-        yield name.last, name.first, name.middle
+        hn = HumanName(rp.Name)
         
-            
+        yield (rp.Year, rp.School, name.last, name.first, name.middle, 
+              (hn.first+hn.middle+hn.last.replace(' ','')).lower().replace(' ',''))
 
+def all_students(resource, doc, env, *args, **kwargs):
+    import petl 
+    from nameparser import HumanName
+    
+    r = doc.reference('all_students_source')
 
-def example_transform(v, row, row_n, i_s, i_d, header_s, header_d,scratch, errors, accumulator):
-    """ An example column transform.
+    def full_name(rec):
+        name =  (rec['first_name'] or '') + ' ' + (rec['last_name'] or '')
 
-    This is an example of a column transform with all of the arguments listed. An real transform
-    can omit any ( or all ) of these, and can supply them in any order; the calling code will inspect the
-    signature.
+        return name
 
-    When the function is listed as a transform for a column, it is called for every row of data.
+    def name_key(rec):
+        
+        hn = HumanName(full_name(rec))
+        
+        return (hn.first+hn.middle+hn.last.replace(' ','')).lower().replace(' ','')
 
-    :param v: The current value of the column
-    :param row: A RowProxy object for the whiole row.
-    :param row_n: The current row number.
-    :param i_s: The numeric index of the source column
-    :param i_d: The numeric index for the destination column
-    :param header_s: The name of the source column
-    :param header_d: The name of the destination column
-    :param scratch: A dict that can be used for storing any values. Persists between rows.
-    :param errors: A dict used to store error messages. Persists for all columns in a row, but not between rows.
-    :param accumulator: A dict for use in accumulating values, such as computing aggregates.
-    :return: The final value to be supplied for the column.
-    """
-
-    return str(v)+'-foo'
+    yield from petl\
+        .rename(r, {'cd re':'school', 
+                    'Last Name':'last_name',
+                    'First Name':'first_name',
+                    '1st Assembly':'1st_assembly'})\
+        .addfield('full_name', index=2, value=lambda rec: full_name(rec) )\
+        .convert('last_name', lambda v, rec: HumanName(rec.full_name).last, pass_row=True  )\
+        .addfield('middle_name', index=5, value=lambda rec: HumanName(rec.full_name).middle)\
+        .convert('first_name', lambda v, rec: HumanName(rec.full_name).first, pass_row=True  )\
+        .addfield('name_key', name_key, index=6)\
+        .cutout('full_name')
